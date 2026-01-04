@@ -1,17 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Lab: Event Listeners With JavaScript</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Listeners Lab</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+            transition: background-color 0.3s ease;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+
+        h2 {
+            color: #555;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .output {
+            background: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            border: 2px solid #ddd;
+            min-height: 50px;
+            margin-top: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .hover-box {
+            background: #e8f4f8;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #007bff;
+        }
+
+        .info {
+            background: #e3f2fd;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #0277bd;
+        }
+
+        form {
+            margin-top: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
 </head>
 <body>
-  <h1>Lab: Event Listeners With JavaScript</h1>
-  <button id="changeColorButton">Change Background Color</button>
-  <button id="resetColorButton">Reset Background Color</button>
-  <p id="keyPressDisplay">Press any key...</p>
-  <input type="text" id="textInput" placeholder="Type something...">
-  <p id="textInputDisplay">Your input will be displayed here.</p>
-  <script src="index.js"></script>
+    <div class="container">
+        <h1>🎯 Event Listeners Lab</h1>
+
+        <!-- Section 1: Button Clicks -->
+        <div class="section">
+            <h2>1. Handle Button Clicks</h2>
+            <button id="colorBtn">Click to Change Background Color</button>
+            <div class="info">💡 Single-click changes color, double-click resets to white</div>
+        </div>
+
+        <!-- Section 2: Keyboard Input -->
+        <div class="section">
+            <h2>2. Capture Keyboard Input</h2>
+            <div class="info">💡 Press any key on your keyboard</div>
+            <div class="output" id="keyOutput">Press a key...</div>
+        </div>
+
+        <!-- Section 3: Text Input -->
+        <div class="section">
+            <h2>3. Process Text Input</h2>
+            <input type="text" id="textInput" placeholder="Type something here...">
+            <div class="output" id="textOutput">Your text will appear here...</div>
+        </div>
+
+        <!-- Section 4: Combined Events -->
+        <div class="section">
+            <h2>4. Combine Multiple Events</h2>
+            <input type="text" id="combinedInput" placeholder="Type and press Enter or click the button">
+            <button id="submitBtn">Submit</button>
+            <div class="output" id="combinedOutput">No entries yet...</div>
+        </div>
+
+        <!-- Bonus Section: Additional Features -->
+        <div class="section">
+            <h2>🌟 BONUS: Additional Features</h2>
+            
+            <!-- Hover Effect -->
+            <h3 style="margin-bottom: 10px; color: #666;">Hover Effect</h3>
+            <div class="hover-box" id="hoverBox">
+                Hover over me!
+            </div>
+
+            <!-- Form Submission -->
+            <h3 style="margin: 20px 0 10px 0; color: #666;">Form Submission</h3>
+            <form id="userForm">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" required>
+                </div>
+                <button type="submit">Submit Form</button>
+            </form>
+            <div class="success-message" id="successMessage"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
